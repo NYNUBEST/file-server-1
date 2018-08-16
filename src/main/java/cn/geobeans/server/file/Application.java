@@ -15,7 +15,7 @@ public class Application {
     //是否打印调试信息
     public static Boolean DEBUG = true;
     //存储路径
-    public static String PATH = "/tmp/storage";
+    public static String PATH = "G:\\tmp\\storage";
     //端口
     private static Integer PORT = 8888;
     //最大线程数
@@ -49,6 +49,7 @@ public class Application {
             server.createContext("/download", new DownloadHandler());
             server.createContext("/list", new ListHandler());
             server.createContext("/status", new StatusHandler());
+            server.createContext("/delete", new DeleteHandler());
             server.setExecutor(getHttpExecutor()); // creates a default executor
             server.start();
             L.i(String.format("Please visit：http://localhost:%s/",PORT));

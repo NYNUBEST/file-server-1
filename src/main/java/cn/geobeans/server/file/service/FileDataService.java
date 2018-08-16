@@ -136,10 +136,20 @@ public class FileDataService {
      * @param md5
      * @return
      */
-    public static Boolean deleteByMd5(String md5) throws SQLException {
-        String sql = "DELETE FROM " + TABLE + " WHERE MD5 = ?";
-        int rs = Database.executeUpdate(sql, md5);
-        return rs != 0;
+    public static Boolean deleteByMd5(String md5) throws Exception {
+        FileData file=getByMd5(md5);
+        if(file!=null){
+            String sql = "DELETE FROM " + TABLE + " WHERE MD5 = ?";
+            int rs = Database.executeUpdate(sql, md5);
+            if(rs!=0){
+                String dest = Application.PATH +File.separator + "data" + File.separator + md5 + "." + FilenameUtils.getExtension(file.getName());
+                File delFile=new File(dest);
+                delFile.deleteOnExit();
+            }
+            return rs != 0;
+        }else {
+            return false;
+        }
     }
 
     /**

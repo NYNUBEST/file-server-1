@@ -15,7 +15,7 @@ public class Application {
     //是否打印调试信息
     public static Boolean DEBUG = true;
     //存储路径
-    public static String PATH = "G:\\tmp\\storage";
+    public static String PATH = "/tmp/storage";
     //端口
     private static Integer PORT = 8888;
     //最大线程数
